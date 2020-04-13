@@ -19,37 +19,20 @@
 
 import PackageDescription
 
-#if os(macOS)
 let package = Package(
-	name: "PerfectPostgreSQL",
-	platforms: [
-		.macOS(.v10_15)
-	],
-	products: [
-		.library(name: "PerfectPostgreSQL", targets: ["PerfectPostgreSQL"])
-	],
-	dependencies: [
-		.package(url: "https://github.com/PerfectlySoft/Perfect-CRUD.git", from: "2.0.0"),
-		.package(url: "https://github.com/PerfectlySoft/Perfect-libpq.git", from: "2.0.0"),
-		],
-	targets: [
-		.target(name: "PerfectPostgreSQL", dependencies: ["PerfectCRUD"]),
-		.testTarget(name: "PerfectPostgreSQLTests", dependencies: ["PerfectPostgreSQL"])
-	]
+    name: "PerfectPostgreSQL",
+    platforms: [
+        .macOS(.v10_15), .iOS(.v13)
+    ],
+    products: [
+        .library(name: "PerfectPostgreSQL", targets: ["PerfectPostgreSQL"])
+    ],
+    dependencies: [
+        .package(url: "https://github.com/PerfectlySoft/Perfect-CRUD.git", from: "2.0.0"),
+        .package(url: "https://github.com/JannThomas/CLibPQ.git", .branch("master")),
+        ],
+    targets: [
+        .target(name: "PerfectPostgreSQL", dependencies: ["PerfectCRUD", "libpq"]),
+        .testTarget(name: "PerfectPostgreSQLTests", dependencies: ["PerfectPostgreSQL"])
+    ]
 )
-#else
-let package = Package(
-	name: "PerfectPostgreSQL",
-	products: [
-		.library(name: "PerfectPostgreSQL", targets: ["PerfectPostgreSQL"])
-	],
-	dependencies: [
-		.package(url: "https://github.com/PerfectlySoft/Perfect-CRUD.git", from: "2.0.0"),
-		.package(url: "https://github.com/PerfectlySoft/Perfect-libpq-linux.git", from: "2.0.0"),
-		],
-	targets: [
-		.target(name: "PerfectPostgreSQL", dependencies: ["PerfectCRUD"]),
-		.testTarget(name: "PerfectPostgreSQLTests", dependencies: ["PerfectPostgreSQL"])
-	]
-)
-#endif

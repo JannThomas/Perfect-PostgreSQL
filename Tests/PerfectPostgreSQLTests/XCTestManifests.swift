@@ -18,7 +18,7 @@
 
 import XCTest
 
-#if !os(OSX)
+#if os(Linux)
 public func allTests() -> [XCTestCaseEntry] {
 	return [
 			testCase(PerfectPostgreSQLTests.allTests)
