@@ -530,7 +530,7 @@ class PostgresExeDelegate: SQLExeDelegate {
 }
 
 public struct PostgresDatabaseConfiguration: DatabaseConfigurationProtocol {
-	let connection: PGConnection
+	public let connection: PGConnection
 	
 	public init(url: String?,
 				 name: String?,
