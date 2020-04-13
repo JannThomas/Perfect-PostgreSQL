@@ -499,7 +499,7 @@ public final class PGConnection {
 		case .emptyQuery, .commandOK, .tuplesOK:
 			return res
 		case .badResponse, .nonFatalError, .fatalError, .singleTuple, .unknown:
-			throw PostgreSQLError.error("Failed to execute statement. status: \(status), error: \(errorMessage())")
+            throw PostgreSQLError.error("Failed to execute statement. status: \(status), error: \(res.errorMessage())")
 		}
 	}
 	
