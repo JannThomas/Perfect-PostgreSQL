@@ -28,8 +28,8 @@ let package = Package(
         .library(name: "PerfectPostgreSQL", targets: ["PerfectPostgreSQL"])
     ],
     dependencies: [
-        .package(url: "https://github.com/JannThomas/Perfect-CRUD.git", .branch("master")),
-        .package(url: "https://github.com/JannThomas/CLibPQ.git", .branch("master")),
+        .package(url: "https://github.com/Quintschaf/Perfect-CRUD.git", .branch("master")),
+        .package(url: "https://github.com/Quintschaf/CLibPQ.git", .branch("master")),
         ],
     targets: [
         .target(name: "PerfectPostgreSQL", dependencies: ["PerfectCRUD", "libpq"]),
