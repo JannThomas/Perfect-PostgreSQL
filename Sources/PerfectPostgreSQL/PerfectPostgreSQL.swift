@@ -131,6 +131,7 @@ public final class PGResult {
 			let ret = String(validatingUTF8: fn) else {
 				return nil
 		}
+        
 		return ret
 	}
 	
@@ -142,14 +143,25 @@ public final class PGResult {
 		let fn = PQftype(res, Int32(index))
 		return fn
 	}
-	
-	/// number of rows (Tuples) returned in result
-	public func numTuples() -> Int {
-		guard let res = self.res else {
-			return 0
-		}
-		return Int(PQntuples(res))
-	}
+    
+    /// number of rows (Tuples) returned in result
+    public func numTuples() -> Int {
+        guard let res = self.res else {
+            return 0
+        }
+        return Int(PQntuples(res))
+    }
+    
+    /// number of rows affected in result
+    public func numRowsAffected() -> Int {
+        guard let res = self.res,
+            let fn = PQcmdTuples(res),
+            let ret = String(validatingUTF8: fn) else {
+            return 0
+        }
+        
+        return Int(ret) ?? 0
+    }
 	
 	/// test null field at row index for field index
 	public func fieldIsNull(tupleIndex: Int, fieldIndex: Int) -> Bool {
